@@ -1,0 +1,51 @@
+ CREATE TABLE parties
+  (
+      id BIGINT(50) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+      name VARCHAR(150)  NOT NULL,
+      address VARCHAR(255) NOT NULL,
+      secretary_name  VARCHAR(150) NOT NULL,
+      secretary_address  VARCHAR(250) NOT NULL,
+      telephone  VARCHAR(10) NOT NULL,
+      logo_url  VARCHAR(250) NOT NULL,
+     -- constitution_url  VARCHAR(250) NOT NULL,
+     -- members_list_url  VARCHAR(250) NOT NULL,
+    --  bank_statement_url  VARCHAR(250) NOT NULL,
+     -- party_policy_url  VARCHAR(250) NOT NULL,
+      acknowledged NUMBER(1) NOT NULL DEFAULT 0
+  ) ENGINE = InnoDb;
+
+
+  CREATE TABLE voters
+    (
+        id BIGINT(50) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+        full_name VARCHAR(150)  NOT NULL,
+        nic VARCHAR(15)  NOT NULL,
+        address VARCHAR(255) NOT NULL,
+        dob DATE NOT NULL,
+       -- secretariat_div  VARCHAR(250) NOT NULL,
+        district_id  VARCHAR(10) NOT NULL,
+        province_id  VARCHAR(10) NOT NULL,
+        postal_code  VARCHAR(6) NOT NULL,
+        created_by  VARCHAR(50) NOT NULL,
+        created_date  TIMESTAMP(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        updated_by  VARCHAR(50),
+        created_date  TIMESTAMP;
+    ) ENGINE = InnoDb;
+
+    CREATE TABLE members
+        (
+            id BIGINT(50) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+            full_name VARCHAR(150)  NOT NULL,
+            nic VARCHAR(15)  NOT NULL,
+            address VARCHAR(255) NOT NULL,
+            dob DATE NOT NULL,
+           -- secretariat_div  VARCHAR(250) NOT NULL,
+            party_id BIGINT(50) NOT NULL,
+            district_id  NUMBER(10) NOT NULL,
+            province_id  number(10) NOT NULL,
+            postal_code  VARCHAR(6) NOT NULL,
+            created_by  VARCHAR(50) NOT NULL,
+            created_date  TIMESTAMP(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            updated_by  VARCHAR(50),
+            created_date  TIMESTAMP;
+        ) ENGINE = InnoDb;
