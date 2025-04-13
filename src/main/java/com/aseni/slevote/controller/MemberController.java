@@ -1,8 +1,8 @@
 package com.aseni.slevote.controller;
 
-import com.aseni.slevote.model.Customers;
+import com.aseni.slevote.model.Member;
 import com.aseni.slevote.model.Party;
-import com.aseni.slevote.service.CustomersService;
+import com.aseni.slevote.service.MemberService;
 import com.aseni.slevote.service.PartyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -14,25 +14,35 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-@Controller
-@RequestMapping("party")
-public class PartyController {
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
+@Controller
+@RequestMapping("member")
+public class MemberController {
+
+    private MemberService memberService;
     private PartyService partyService;
 
     @Autowired
-    public void setCustomerService(PartyService partyService) {
+    public void setMemberService(MemberService memberService) {
+        this.memberService = memberService;
+    }
+
+    @Autowired
+    public void setPartyService(PartyService partyService) {
         this.partyService = partyService;
     }
 
     @GetMapping
     public String index() {
-        return "redirect:/party/1";
+        return "redirect:/member/1";
     }
 
     @GetMapping(value = "/{pageNumber}")
     public String list(@PathVariable Integer pageNumber, Model model) {
-        Page<Party> page = partyService.getList(pageNumber);
+        Page<Member> page = memberService.getList(pageNumber);
 
         int current = page.getNumber() + 1;
         int begin = Math.max(1, current - 5);
@@ -43,40 +53,44 @@ public class PartyController {
         model.addAttribute("endIndex", end);
         model.addAttribute("currentIndex", current);
 
-        return "party/list";
+        return "member/list";
 
     }
 
     @GetMapping("/add")
     public String add(Model model) {
-
-        model.addAttribute("party", new Party());
-        return "party/form";
+        List<Party> parties = partyService.getList();
+        model.addAttribute("member", new Member());
+        Map<Long,String> map = parties.stream()
+                .collect(Collectors.toMap(Party::getPartyid, Party::getName));
+        model.addAttribute("parties", parties);
+        return "member/form";
 
     }
 
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable Long id, Model model) {
 
-        model.addAttribute("customer", partyService.get(id));
-        return "party/form";
+        model.addAttribute("member", memberService.get(id));
+        return "member/form";
 
     }
 
     @PostMapping(value = "/save")
-    public String save(Party party, final RedirectAttributes ra) {
-
-        Party save = partyService.save(party);
-        ra.addFlashAttribute("successFlash", "Party saved successfully.");
-        return "redirect:/party";
+    public String save(Member member, final RedirectAttributes ra) {
+        Party refrech = partyService.get(member.getParty().getPartyid());
+        member.setParty(refrech);
+        Member save = memberService.save(member);
+        ra.addFlashAttribute("successFlash", "Member saved successfully");
+        return "redirect:/member";
 
     }
 
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable Long id) {
 
-        partyService.delete(id);
-        return "redirect:/party";
+        memberService.delete(id);
+        return "redirect:/member";
 
     }
 

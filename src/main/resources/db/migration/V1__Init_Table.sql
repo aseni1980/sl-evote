@@ -36,7 +36,7 @@ VALUES (1, 'Vimukthi', 'Jayawardane', 'vimukthi@slevote.com', '2025-01-29 00:01:
 
 CREATE TABLE party
   (
-      id BIGINT(50) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+      partyid BIGINT(50) NOT NULL PRIMARY KEY AUTO_INCREMENT,
       name VARCHAR(150)  NOT NULL,
       address VARCHAR(255) NOT NULL,
       secretaryname  VARCHAR(150) NOT NULL,
@@ -48,4 +48,14 @@ CREATE TABLE party
     --  bank_statement_url  VARCHAR(250) NOT NULL,
      -- party_policy_url  VARCHAR(250) NOT NULL,
       acknowledged INTEGER(2) NOT NULL DEFAULT 0
+  ) ENGINE = InnoDb;
+
+  CREATE TABLE member
+  (
+      memberid BIGINT(50) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+      fullname VARCHAR(150)  NOT NULL,
+      -- nic VARCHAR(15)  NOT NULL,
+      imageurl VARCHAR(255),
+      qualification VARCHAR(100),
+      partyid BIGINT(50) NOT NULL
   ) ENGINE = InnoDb;

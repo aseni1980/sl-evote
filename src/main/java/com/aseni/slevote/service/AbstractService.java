@@ -11,17 +11,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.io.Serializable;
 import java.util.Optional;
 
-public abstract class AbstractService<T extends AbstractModel<Long>, Long extends Serializable> {
+public abstract class AbstractService<T extends Serializable> {
 
     private static final int PAGE_SIZE = 5;
     protected abstract JpaRepository<T, Long> getRepository();
-
-    public Page<T> getList(Integer pageNumber) {
-        PageRequest pageRequest =
-                PageRequest.of(pageNumber - 1, PAGE_SIZE, Sort.Direction.ASC, "id");
-
-        return getRepository().findAll(pageRequest);
-    }
 
     public T save(T entity) {
         return getRepository().save(entity);
@@ -39,10 +32,5 @@ public abstract class AbstractService<T extends AbstractModel<Long>, Long extend
         } catch (EmptyResultDataAccessException e) {}
     }
 
-    public void update(T entity) {
-        Optional<T> getEntityOpt = getRepository().findById(entity.getId());
-        T getEntity = getEntityOpt.get();
-        getRepository().save(entity);
-    }
 
 }

@@ -2,14 +2,14 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="layout">
 <head>
-    <title>Clients</title>
+    <title>Members</title>
 </head>
 <body>
 <section layout:fragment="header">
-    <h1>Clients</h1>
+    <h1>Members</h1>
 <ol class="breadcrumb">
     <li><a href="/"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-    <li class="active">Clients</li>
+    <li class="active">Members</li>
 </ol>
 </section>
 <div layout:fragment="content">
@@ -17,7 +17,7 @@
         <div class="box-header with-border">
             <h3 class="box-title">Lists</h3>
             <div class="box-tools pull-right">
-                <a href="/customers/add" type="button" class="btn btn-box-tool"><i class="fa fa-plus"></i></a>
+                <a href="/member/add" type="button" class="btn btn-box-tool"><i class="fa fa-plus"></i></a>
                 <br clear="all" />
             </div>
         </div>
@@ -26,29 +26,27 @@
                 <tr>
                     <th>ID</th>
                     <th>Name</th>
-                    <th>Email</th>
-                    <th>Registration Date</th>
+                    <th>Party name</th>
                     <th>Action</th>
                 </tr>
                 <tr th:each="row : ${list}">
-                    <td th:text="${row.id}"></td>
-                    <td th:text="${row.firstname + ' ' + row.lastname}"></td>
-                    <td th:text="${row.email}"></td>
-                    <td th:text="${#dates.format(row.addedDate, 'dd/MM/yyyy')}"></td>
+                    <td th:text="${row.memberid}"></td>
+                    <td th:text="${row.fullname}"></td>
+                    <td th:text="${row.party.name}"></td>
                     <td>
-                        <a th:href="${'/customers/edit/' + row.id}">Edit</a> |
-                        <a th:href="${'/customers/delete/' + row.id}">Delete</a>
+                        <a th:href="${'/member/edit/' + row.memberid}">Edit</a> |
+                        <a th:href="${'/member/delete/' + row.memberid}">Delete</a>
                     </td>
                 </tr>
             </table>
         </div>
         <div class="box-footer clearfix">
             <ul class="pagination pagination-sm no-margin pull-right">
-                <li><a href="/customers/1">First</a></li>
+                <li><a href="/member/1">First</a></li>
                 <li th:each="p : ${#numbers.sequence(1, endIndex/beginIndex)}" th:class="${p == currentIndex} ? 'active' : ''">
-                    <a th:href="${'/customers/' + p}" th:text="${p}"></a>
+                    <a th:href="${'/member/' + p}" th:text="${p}"></a>
                 </li>
-                <li><a th:href="${'/customers/' + endIndex}">Last</a></li>
+                <li><a th:href="${'/member/' + endIndex}">Last</a></li>
             </ul>
         </div>
     </div>

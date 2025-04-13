@@ -22,7 +22,7 @@
         </div>
         <form data-toggle="validator" role="form" th:object="${party}" th:action="@{/party/save}" method="post">
             <div class="box-body">
-                <input type="hidden" th:field="*{id}"/>
+                <input type="hidden" th:field="*{partyid}"/>
 
                 <div class="form-group">
                     <label for="name">Name</label>

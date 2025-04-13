@@ -32,15 +32,15 @@
                     <th>Action</th>
                 </tr>
                 <tr th:each="row : ${list}">
-                    <td th:text="${row.id}"></td>
+                    <td th:text="${row.partyid}"></td>
                     <td th:text="${row.name}"></td>
                     <td th:text="${row.address}"></td>
                     <td th:text="${row.secretaryname}"></td>
                     <td th:text="${row.telephone}"></td>
 
                     <td>
-                        <a th:href="${'/customers/edit/' + row.id}">Edit</a> |
-                        <a th:href="${'/customers/delete/' + row.id}">Delete</a>
+                        <a th:href="${'/party/edit/' + row.partyid}">Edit</a> |
+                        <a th:href="${'/party/delete/' + row.partyid}">Delete</a>
                     </td>
                 </tr>
             </table>
@@ -49,9 +49,9 @@
             <ul class="pagination pagination-sm no-margin pull-right">
                 <li><a href="/customers/1">First</a></li>
                 <li th:each="p : ${#numbers.sequence(1, endIndex/beginIndex)}" th:class="${p == currentIndex} ? 'active' : ''">
-                    <a th:href="${'/customers/' + p}" th:text="${p}"></a>
+                    <a th:href="${'/party/' + p}" th:text="${p}"></a>
                 </li>
-                <li><a th:href="${'/customers/' + endIndex}">Last</a></li>
+                <li><a th:href="${'/party/' + endIndex}">Last</a></li>
             </ul>
         </div>
     </div>

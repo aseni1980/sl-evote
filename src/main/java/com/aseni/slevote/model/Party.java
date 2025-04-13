@@ -1,10 +1,10 @@
 package com.aseni.slevote.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Data
@@ -13,7 +13,11 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Party extends AbstractModel<Long> {
+public class Party extends AbstractModel<Long>{
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long partyid;
 
     @Column(nullable = false, length = 150)
     private String name;
@@ -34,4 +38,7 @@ public class Party extends AbstractModel<Long> {
     private Integer acknowledged = 0;
 
 
+    @OneToMany(mappedBy = "party",cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH,
+            CascadeType.REFRESH })
+    private List<Member> members;
 }

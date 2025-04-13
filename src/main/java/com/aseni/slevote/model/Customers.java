@@ -1,7 +1,6 @@
 package com.aseni.slevote.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -19,6 +18,10 @@ import java.util.Date;
 @NoArgsConstructor
 @ToString
 public class Customers extends AbstractModel<Long> {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(nullable = false, length = 40)
     private String firstname;
