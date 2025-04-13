@@ -33,3 +33,19 @@ VALUES (1, 'Vimukthi', 'Jayawardane', 'vimukthi@slevote.com', '2025-01-29 00:01:
      password VARCHAR(255) NOT NULL,
      enabled  BOOLEAN      NOT NULL
  ) ENGINE = InnoDb;
+
+CREATE TABLE party
+  (
+      id BIGINT(50) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+      name VARCHAR(150)  NOT NULL,
+      address VARCHAR(255) NOT NULL,
+      secretaryname  VARCHAR(150) NOT NULL,
+      secretaryaddress  VARCHAR(250),
+      telephone  VARCHAR(15) NOT NULL,
+      logo_url  VARCHAR(250),
+     -- constitution_url  VARCHAR(250) NOT NULL,
+     -- members_list_url  VARCHAR(250) NOT NULL,
+    --  bank_statement_url  VARCHAR(250) NOT NULL,
+     -- party_policy_url  VARCHAR(250) NOT NULL,
+      acknowledged INTEGER(2) NOT NULL DEFAULT 0
+  ) ENGINE = InnoDb;
