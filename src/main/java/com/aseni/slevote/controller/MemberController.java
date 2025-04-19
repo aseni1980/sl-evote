@@ -65,13 +65,16 @@ public class MemberController {
                 .collect(Collectors.toMap(Party::getPartyid, Party::getName));
         model.addAttribute("parties", parties);
         return "member/form";
-
     }
 
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable Long id, Model model) {
 
         model.addAttribute("member", memberService.get(id));
+        List<Party> parties = partyService.getList();
+        Map<Long,String> map = parties.stream()
+                .collect(Collectors.toMap(Party::getPartyid, Party::getName));
+        model.addAttribute("parties", parties);
         return "member/form";
 
     }

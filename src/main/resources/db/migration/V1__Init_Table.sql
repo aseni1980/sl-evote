@@ -27,13 +27,6 @@ VALUES (1, 'Vimukthi', 'Jayawardane', 'vimukthi@slevote.com', '2025-01-29 00:01:
        (3, 'Nikini', 'Jayawardane', 'nikini@slevote.com', '2025-01-29 00:01:01'),
        (4, 'Binara', 'Jayawardane', 'binara@slevote.com', '2025-01-29 00:01:01');
 
- CREATE TABLE voters
- (
-     username VARCHAR(50)  NOT NULL PRIMARY KEY,
-     password VARCHAR(255) NOT NULL,
-     enabled  BOOLEAN      NOT NULL
- ) ENGINE = InnoDb;
-
 CREATE TABLE party
   (
       partyid BIGINT(50) NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -59,3 +52,16 @@ CREATE TABLE party
       qualification VARCHAR(100),
       partyid BIGINT(50) NOT NULL
   ) ENGINE = InnoDb;
+
+  CREATE TABLE voter
+      (
+          voterid BIGINT(50) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+          name VARCHAR(150)  NOT NULL,
+          nic VARCHAR(15)  NOT NULL,
+          address VARCHAR(255) NOT NULL,
+          district  VARCHAR(100) NOT NULL,
+          province  VARCHAR(100) NOT NULL,
+          postalcode  VARCHAR(6) NOT NULL,
+          status  VARCHAR(10) NOT NULL,
+          officeid  VARCHAR(15) NOT NULL
+      ) ENGINE = InnoDb;

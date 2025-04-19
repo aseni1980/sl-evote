@@ -34,7 +34,8 @@
                 </div>
                 <div class="form-group col-md-12">
                     <label  class="col-form-label">Party </label>
-                    <select  id="partyid" name="partyid" th:field="*{party.partyid}" >
+                    <select  id="partyid" name="partyid" th:field="*{party.partyid}" class="form-control">
+                        <option value="">Select</option>
                         <option th:each="party : ${parties}" th:value="${party.partyid}" th:utext="${party.name}"/>
                     </select>
                 </div>
