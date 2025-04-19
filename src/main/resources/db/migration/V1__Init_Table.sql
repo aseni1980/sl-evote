@@ -43,6 +43,14 @@ CREATE TABLE party
       acknowledged INTEGER(2) NOT NULL DEFAULT 0
   ) ENGINE = InnoDb;
 
+  insert into party
+          (acknowledged,name, address,secretaryname, logo_url, telephone) values
+          (1,'United National Party', 'No 02, Colombo02, Western Province', 'Ranil Wick','../../dist/img/finger.jpg', '01123456783'),
+          (1,'Samagi Jana Balawegaya', 'No 02, Colombo02, Western Province', 'Ranil Wick','../../dist/img/finger.jpg', '01123456783'),
+          (1,'New Democratic Front', 'No 02, Colombo02, Western Province', 'Ranil Wick','../../dist/img/finger.jpg', '01123456783'),
+          (1,'National People Party', 'No 05, Colombo07, Western Province', 'Anura De Silva','../../dist/img/bell.jpg', '01123323283');
+
+
   CREATE TABLE member
   (
       memberid BIGINT(50) NOT NULL PRIMARY KEY AUTO_INCREMENT,
