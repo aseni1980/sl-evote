@@ -57,11 +57,13 @@ public class ResultService extends AbstractService<Voting> {
             Member tmpMember = memberMap.get(key);
             newDto.setFullname(tmpMember.getFullname());
             newDto.setLogo_url(tmpMember.getParty().getLogo_url());
+            newDto.setPartyName(tmpMember.getParty().getName());
             newDto.setMemberid(key);
             newDto.setTotalVotes((long) totalVotes);
             newDto.setWonVotes((long) tmpVtLst.size());
             if(totalVotes> 0){
-                newDto.setPercentage(String.valueOf((tmpVtLst.size()/totalVotes)*100));
+                double percentage = (double)tmpVtLst.size()/totalVotes*100;
+                newDto.setPercentage(String.valueOf(percentage));
             }
             resultMap.put(tmpMember.getFullname(), newDto);
         });

@@ -32,9 +32,7 @@ public class ResultController {
     @GetMapping(value = "/list")
     public String list(Model model) {
 
-
         model.addAttribute("results", resultService.getResultList());
-
         return "result/index";
 
     }

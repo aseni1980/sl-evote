@@ -1,19 +1,60 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="layout">
 <head>
     <title>Dashboard</title>
 </head>
 <body>
 <div layout:fragment="content">
-    Voting Status By Aseni
-    <div class="col-sm-12">
-        <div class="row">
-            <div class="col-sm-12">
-                <img class="img-responsive" src="../../dist/img/finger.jpg" alt="Photo">
+
+    <div class="box">
+        <div class="box-header with-border">
+            <h3 class="box-title">Voting Results</h3>
+            <div class="box-tools pull-right">
+                <a href="#" type="button" class="btn btn-box-tool"><i class="fa fa-plus"></i></a>
+                <br clear="all" />
             </div>
-            <!-- /.col -->
         </div>
+        <div class="box-body">
+            <div class="col-sm-12">
+                <div class="box-footer" th:each="res: ${results}">
+                    <div class="col-sm-3">
+                        <div class="description-block">
+                            <h5 class="description-header" th:text="${res.partyName}" />
+                            <img class="img-responsive" th:src="${res.logo_url}" alt="Photo">
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="description-block">
+                            <h5 class="description-header">Candidate Name</h5>
+                            <span class="description-text" th:text="${res.fullname}"/>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="description-block">
+                            <h5 class="description-header">Percentage</h5>
+                            <span class="description-text" th:text="${res.percentage}"/>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="description-block">
+                            <h5 class="description-header">Won Votes</h5>
+                            <span class="description-text" th:text="${res.wonVotes}"/>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="description-block">
+                            <h5 class="description-header">Total Votes</h5>
+                            <span class="description-text" th:text="${res.totalVotes}"/>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.col -->
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12">
+
         <!-- /.row -->
     </div>
 </div>

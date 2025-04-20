@@ -20,5 +20,6 @@ public class ResultDto{
     private String percentage;
     private Long totalVotes;
     private Long wonVotes;
+    private String partyName;
 
 }
