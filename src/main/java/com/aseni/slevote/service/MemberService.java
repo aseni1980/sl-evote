@@ -11,6 +11,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -30,6 +31,10 @@ public class MemberService extends AbstractService<Member> {
                 PageRequest.of(pageNumber - 1, PAGE_SIZE, Sort.Direction.ASC, "memberid");
 
         return getRepository().findAll(pageRequest);
+    }
+
+    public List<Member> getMembersList(){
+        return memberRepository.findAll();
     }
 
     public void update(Member entity) {

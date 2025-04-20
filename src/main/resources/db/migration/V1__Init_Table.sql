@@ -36,26 +36,21 @@ CREATE TABLE party
       secretaryaddress  VARCHAR(250),
       telephone  VARCHAR(15) NOT NULL,
       logo_url  VARCHAR(250),
-     -- constitution_url  VARCHAR(250) NOT NULL,
-     -- members_list_url  VARCHAR(250) NOT NULL,
-    --  bank_statement_url  VARCHAR(250) NOT NULL,
-     -- party_policy_url  VARCHAR(250) NOT NULL,
       acknowledged INTEGER(2) NOT NULL DEFAULT 0
   ) ENGINE = InnoDb;
 
   insert into party
           (acknowledged,name, address,secretaryname, logo_url, telephone) values
-          (1,'United National Party', 'No 02, Colombo02, Western Province', 'Ranil Wick','../../dist/img/finger.jpg', '01123456783'),
-          (1,'Samagi Jana Balawegaya', 'No 02, Colombo02, Western Province', 'Ranil Wick','../../dist/img/finger.jpg', '01123456783'),
-          (1,'New Democratic Front', 'No 02, Colombo02, Western Province', 'Ranil Wick','../../dist/img/finger.jpg', '01123456783'),
-          (1,'National People Party', 'No 05, Colombo07, Western Province', 'Anura De Silva','../../dist/img/bell.jpg', '01123323283');
+          (1,'United National Party', 'No 02, Colombo02, Western Province', 'Ranil Wick','../../dist/img/elephant.jpeg', '01123456783'),
+          (1,'Samagi Jana Balawegaya', 'No 02, Colombo02, Western Province', 'Dilan Perera','../../dist/img/chair.png', '01123456783'),
+          (1,'New Democratic Front', 'No 02, Colombo02, Western Province', 'Suren Fernando','../../dist/img/kite.jpeg', '01123456783'),
+          (1,'National People Party', 'No 05, Colombo07, Western Province', 'Anura De Silva','../../dist/img/umbrella.jpg', '01123323283');
 
 
   CREATE TABLE member
   (
       memberid BIGINT(50) NOT NULL PRIMARY KEY AUTO_INCREMENT,
       fullname VARCHAR(150)  NOT NULL,
-      -- nic VARCHAR(15)  NOT NULL,
       imageurl VARCHAR(255),
       qualification VARCHAR(100),
       partyid BIGINT(50) NOT NULL
@@ -73,3 +68,10 @@ CREATE TABLE party
           status  VARCHAR(10) NOT NULL,
           officeid  VARCHAR(15) NOT NULL
       ) ENGINE = InnoDb;
+
+  CREATE TABLE voting
+        (
+            votingid BIGINT(50) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+            voterid BIGINT(150)  NOT NULL,
+            memberid BIGINT(15)  NOT NULL
+        ) ENGINE = InnoDb;
