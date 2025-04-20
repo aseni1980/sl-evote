@@ -1,0 +1,69 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layout">
+<head>
+    <title>Registration Client</title>
+</head>
+<body>
+<section layout:fragment="header">
+    <h1>Voter registration</h1>
+    <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        <li class="active">Registration Voter</li>
+    </ol>
+</section>
+<div layout:fragment="content">
+    <div class="box">
+        <div class="box-header with-border">
+            <h3 class="box-title">Form</h3>
+            <div class="box-tools pull-right">
+                <a href="/voter" type="button" class="btn btn-box-tool"><i class="fa fa-list-ul"></i></a>
+            </div>
+        </div>
+        <form data-toggle="validator" role="form" th:object="${voter}" th:action="@{/voter/save}" method="post">
+            <div class="box-body">
+                <input type="hidden" th:field="*{voterid}"/>
+
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" required="true" class="form-control" th:field="*{name}" id="name" />
+                </div>
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <input type="text" required="true" class="form-control" th:field="*{address}" id="address" />
+                </div>
+                <div class="form-group">
+                    <label for="nic">National ID Number</label>
+                    <input type="text" required="true" class="form-control" th:field="*{nic}" id="nic" />
+                </div>
+                <div class="form-group">
+                    <label for="district">District</label>
+                    <select  id="district" name="district" th:field="*{district}" class="form-control">
+                        <option value="">Select</option>
+                        <option th:each="dis : ${districts}" th:value="${dis.key}" th:utext="${dis.value}"/>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Province </label>
+                    <select  id="province" name="province" th:field="*{province}" class="form-control">
+                        <option value="">Select</option>
+                        <option th:each="prov : ${provinces}" th:value="${prov.key}" th:utext="${prov.value}"/>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="postalcode">Postal Code</label>
+                    <input type="text" required="true" class="form-control" th:field="*{postalcode}" id="postalcode" />
+                </div>
+                <div class="form-group">
+                    <label for="officeid">Office ID</label>
+                    <input type="text" required="true" class="form-control" th:field="*{officeid}" id="officeid" />
+                </div>
+            </div>
+            <div class="box-footer">
+                <button class="btn btn-primary" type="submit">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
